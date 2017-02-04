@@ -53,15 +53,10 @@ int8_t my_memzero(uint8_t *scr, uint32_t length)
 	}
 	return 0;
 }
-
-int8_t my_reverse(int8_t * str, int32_t length)
+char rev(char * ptr,int length)
 {
-	if(!str)
-	{
-		return 1;
-	}
 	length=length-1;
-	int32_t l;
+	int l;
 	if(length%2==0)
 	{
 		l=length/2;
@@ -70,21 +65,12 @@ int8_t my_reverse(int8_t * str, int32_t length)
 	{
 		l=(length-1)/2;
 	}
-	int8_t i;
-	int8_t temp;
-	for(i=0;i<=length;i++)
-	{
-		if(*(str+i)=='\0')
-		{
-			*(str+i)='0';
-		}
-	}
+	char i;
+	char temp;
 	for(i=0;i<=l;i++)
 	{
-		temp=*(str+i);
-		*(str+i)=*(str+length-i);
-		*(str+length-i)=temp;
+		temp=*(ptr+i);
+		*(ptr+i)=*(ptr+length-i);
+		*(ptr+length-i)=temp;
 	}
-	*(str+length+1)='\0';
-	return 0;
 }
