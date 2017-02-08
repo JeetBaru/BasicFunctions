@@ -1,4 +1,5 @@
 #include<stdint.h>
+#include<stdio.h>
 
 int8_t * my_itoa(int8_t * str, int32_t data, int32_t base);
 int32_t my_atoi(int8_t * str);
@@ -128,4 +129,13 @@ int8_t little_to_big32(uint32_t * data,uint32_t length)
 		p=p+4;
 	}
 	return 1;
+}
+void print_memory(uint8_t * start, uint32_t length)
+{
+	while(length>0)
+	{
+		printf("%x ",*start)
+		start++;
+		length--;
+	}
 }
