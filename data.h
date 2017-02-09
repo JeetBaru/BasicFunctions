@@ -2,6 +2,7 @@
 #define __DATA_H__
 
 #include <stdint.h>
+#include <stdio.h>
 
 int8_t * my_itoa(int8_t * str, int32_t data, int32_t base);
 int32_t my_atoi(int8_t * str);

@@ -1,25 +1,22 @@
-#include "data.h"
-
-int8_t * my_itoa(int8_t * str, int32_t data, int32_t base);
-int32_t my_atoi(int8_t * str);
-int8_t big_to_little32(uint32_t * data,uint32_t length);
-int8_t little_to_big32(uint32_t * data,uint32_t length);
+#inclue "data.h"
 
 int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 {
-	int8_t count=0;
-	int32_t d=data;
+	int8_t count;
 	int32_t rem;
-	if(base<=0 || base>36)
+	if(base<=1 || base>36)
 	{
 		return 0;
 	}
 	else
 	{
-		while(d!=0)
+		if(base==2)
 		{
-			d=d/base;
-			count++;
+			count=32;
+		}
+		else
+		{
+			count=10;
 		}
 		if(data>=0)
 		{
@@ -31,7 +28,9 @@ int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 			data=-data;
 		}
 		str=str+count+1;
-		while(data>0)
+		*str='\0';
+		str--;
+		while(count>0)
 		{
 			rem=data%base;
 			if(rem<10)
@@ -44,6 +43,7 @@ int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 			}
 			data=data/base;
 			str--;
+			count--;
 		}
 	}
 	return str;
@@ -131,7 +131,7 @@ void print_memory(uint8_t * start, uint32_t length)
 {
 	while(length>0)
 	{
-		printf("%x ",*start)
+		printf("%x ",*start);
 		start++;
 		length--;
 	}
