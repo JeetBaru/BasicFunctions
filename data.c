@@ -1,5 +1,4 @@
-#include<stdint.h>
-#include<stdio.h>
+#include "data.h"
 
 int8_t * my_itoa(int8_t * str, int32_t data, int32_t base);
 int32_t my_atoi(int8_t * str);
@@ -32,8 +31,6 @@ int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 			data=-data;
 		}
 		str=str+count+1;
-		*str='\0';
-		str--;
 		while(data>0)
 		{
 			rem=data%base;

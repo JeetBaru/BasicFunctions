@@ -1,4 +1,4 @@
-# include<stdint.h>
+# include "memory.h"
 
 int8_t my_memmov(uint8_t * scr, uint8_t * dest,uint32_t length)
 {
@@ -53,10 +53,10 @@ int8_t my_memzero(uint8_t *scr, uint32_t length)
 	}
 	return 0;
 }
-char rev(char * ptr,int length)
+int8_t rev(int8_t * ptr,int32_t length)
 {
 	length=length-1;
-	int l;
+	int32_t l;
 	if(length%2==0)
 	{
 		l=length/2;
@@ -65,8 +65,8 @@ char rev(char * ptr,int length)
 	{
 		l=(length-1)/2;
 	}
-	char i;
-	char temp;
+	int8_t i;
+	int8_t temp;
 	for(i=0;i<=l;i++)
 	{
 		temp=*(ptr+i);
