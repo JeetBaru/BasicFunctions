@@ -26,7 +26,7 @@ void test_data2()
 	{
 		my_itoa(ptr, *pt, 10);
 		print_memory(ptr,5);
-		my_atoi(ptr)
+		my_atoi(ptr);
 		print_memory(ptr,4);
 		ptr=ptr+4;
 		pt++;
