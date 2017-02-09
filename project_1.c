@@ -43,6 +43,12 @@ void test_data2()
 		printf("\n");
 		dat=my_atoi(dest);
 		printf("%d\n",dat);
+		my_itoa(ptr, *pt, 10);
+		print_memory(ptr,5);
+		my_atoi(ptr);
+		print_memory(ptr,4);
+		ptr=ptr+4;
+		pt++;
 	}
 }
 void test_memory()
