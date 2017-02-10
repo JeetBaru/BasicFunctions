@@ -1,8 +1,8 @@
-#inclue "data.h"
+#include "data.h"
 
 int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 {
-	int8_t count;
+	int8_t count=10;
 	int32_t rem;
 	if(base<=1 || base>36)
 	{
@@ -10,14 +10,6 @@ int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 	}
 	else
 	{
-		if(base==2)
-		{
-			count=32;
-		}
-		else
-		{
-			count=10;
-		}
 		if(data>=0)
 		{
 			*str='+';
