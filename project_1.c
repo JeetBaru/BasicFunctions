@@ -1,4 +1,6 @@
 #include "project_1.h"
+#include "memory.h"
+#include "data.h"
 
 void project_1_report()
 {
