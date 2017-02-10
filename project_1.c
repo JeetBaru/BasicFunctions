@@ -40,17 +40,11 @@ void test_data2()
 			ptr++;
 		}
 		printf("%x  \n",dat);
-		dest=my_itoa(dest, dat, 16);
+		dest=my_itoa(dest, dat, 10);
 		print_memory(dest, 11);
 		printf("\n");
 		dat=my_atoi(dest);
 		printf("%d\n",dat);
-		my_itoa(ptr, *pt, 10);
-		print_memory(ptr,5);
-		my_atoi(ptr);
-		print_memory(ptr,4);
-		ptr=ptr+4;
-		pt++;
 	}
 }
 void test_memory()
