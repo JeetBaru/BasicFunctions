@@ -1,40 +1,69 @@
-#include sample.mk
-CC= gcc
-CLAGS = -Wl,map=main.map 
-SRCS = main.c \	
-	   data.c \
-	   memory.c \
-	   project_1.c
-FLAGS= -g\
+#!/bin/bash
+#include sample.mk 
+
+#host=Host Linux VM platform
+#bbb=BeagleBone platform
+#frdm=FRDMKL25z platform
+ifeq ($(ARCH), BBB)
+	CC = arm-linux-gnueabihf-gcc
+	REMOTE_PATH = debian@192.168.7.2 :/home/debian/bin
+	else
+	CC = gcc
+endif
+
+ifeq ($(ARCH), FRDM)
+	CC = arm-none-eabi-gcc
+endif
+
+CFLAGS = -Wl,-Map=main.map
+INCLUDES = -I./Cfiles \
+           -I./hfiles
+           
+FLAGS = -g \
 		-Werror \
 		-std=c99
-		
-OBJS = $(SRCS:.c=.o)
 
-.PHONY : all
 
-all : main.out
+ 		 
+#SRCS = Cfiles/main.c \	
+#	   Cfiles/data.c \
+#	   Cfiles/memory.c \
+#	   Cfiles/project_1.c
 
-main.out : $(OBJS)
-	$(CC) -g -$(CFLAGS) -o $@ $^
-	
-main.o : main.c project_1.h 
-	$(CC) $(FLAGS) -c -o $@ main.c
-	
-data.o :data.c data.h
-	$(CC) $(FLAGS)-c -o $@ data.c 
-	
-memory.o : memory.c memory.h
-	$(CC) $(FLAGS) -c -o $@ memory.c
+#OBJS = $(SRCS:.c=.o)
 
-project_1.o : project_1.c project_1.o
-	$(CC) $(Flags) -c -o $@ project_1.c
+#.PHONY : all
+
+#all
+
+main.out : main.o data.o memory.o project_1.o
+	$(CC) $(FLAGS)  -o $@  $^
+
+
+%.i : %.c
+	$(CC) project_1.h -E $^ -o $@
+
+%.o : %.c
+	$(CC) -c $^ -o $@
+
+%.s : %.c
+	$(CC) -S $^ -o $@
+
+
+
 	
+
+
+
 	
 .PHONY : clean
 
 clean :
-	rm main.map $(OBJS) main.out
+	 rm -rf main.out \ 
+	 rm -rf *.o
+	 rm -rf *.i
+	 rm -rf *.s
+	 
 	
 
 
