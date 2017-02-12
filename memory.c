@@ -53,7 +53,7 @@ int8_t my_memzero(uint8_t *scr, uint32_t length)
 	}
 	return 1;
 }
-int8_t rev(int8_t * ptr,int32_t length)
+int8_t my_rev(int8_t * ptr,int32_t length)
 {
 	length=length-1;
 	int32_t l;

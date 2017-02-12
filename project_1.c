@@ -60,7 +60,7 @@ void test_memory()
 	uint8_t * ptr = set_2;
 	print_memory(ptr,32);
 	printf("\n");
-	rev(ptr,12);
+	my_rev(ptr,12);
 	my_memset(ptr+15, 4, 0xEE);
 	my_memmov(ptr + 25, ptr + 19, 6);
 	my_memzero(ptr + 11,5);

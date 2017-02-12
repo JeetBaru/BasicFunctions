@@ -1,5 +1,5 @@
 #!/bin/
-include srcs.mk
+#include srcs.mk
 #host=Host Linux VM platform
 #bbb=BeagleBone platform
 #frdm=FRDMKL25z platform
@@ -62,7 +62,7 @@ build-FRDM:
 	arm-none-eabi-gcc -o Project1 -c -o data.o data.c 
 	arm-none-eabi-gcc -o Project1 -c -o project_1.o project_1.c 
 	arm-none-eabi-gcc -o Project1 -c -o memory.o memory.c 
-	arm-none-eabi-gcc -o Project1 $(OBJS) -specs==nosys.specs
+	arm-none-eabi-gcc -o Project1 $(OBJS) -specs=nosys.specs
 	
 build-BBB: 
 	arm-linux-gnueabihf-gcc -o Project1 $(CFLAGS) -c -o main.o main.c 
