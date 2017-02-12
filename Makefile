@@ -1,6 +1,5 @@
 #!/bin/
-include source.mk
-
+include srcs.mk
 #host=Host Linux VM platform
 #bbb=BeagleBone platform
 #frdm=FRDMKL25z platform
@@ -12,6 +11,8 @@ ifeq ($(ARCH), BBB)
 	CC = gcc
 endif
 
+
+
 ifeq ($(ARCH), FRDM)
 	CC = arm-none-eabi-gcc
 	CFLAGS = -mcpu
@@ -20,11 +21,13 @@ endif
 CFLAGS = -g  \
 		  -Werror \
 		  -std=c99
+		  
 INCLUDES = -I./Cfiles \
            -I./hfiles
+           
 Headers= project_1.h data.h memory.h
            
-#FLAGS = -g \
+FLAGS = -g \
 		-Werror \
 		-std=c99
 
@@ -32,6 +35,9 @@ Headers= project_1.h data.h memory.h
  		
 SRCS = main.c data.c memory.c project_1.c
 OBJS = main.o data.o memory.o project_1.o
+
+vpath %.c $(SRCS)
+vpath %.h $(Headers)
 
 .PHONY : all
 
@@ -55,10 +61,7 @@ main.out : $(OBJS)
 %.dep : %.c
 	$(CC) -M $^ -o $@
 
-sample.mk :
-	mkdir sample.mk/
-	mv *.o sample.mk
-	mv *.c sample.mk
+
 
 build : $(OBJS)
 	$(CC) -o Project1 -Wl,-Map=main.map $(Headers) $^ $(CFLAGS)
