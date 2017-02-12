@@ -29,7 +29,7 @@ Headers= project_1.h data.h memory.h
 
 
  		
-SRCS = main.c data.c memory.c projet_1.c
+SRCS = main.c data.c memory.c project_1.c
 OBJS = main.o data.o memory.o project_1.o
 
 .PHONY : all
@@ -39,7 +39,7 @@ all : main.out
 			
 
 main.out : $(OBJS)
-	$(CC) -o $@  $^ 
+	$(CC) -o $@ $(CFLAGS) $^ 
 
 
 %.i : %.c 
@@ -60,12 +60,10 @@ sample.mk :
 	mv *.c sample.mk
 
 build : $(OBJS)
-	$(CC) -Wl,-Map=main.map $(Headers) $^ $(FLAGS)
+	$(CC) -o Project1 -Wl,-Map=main.map $(Headers) $^ $(CFLAGS)
 
-compile-all : $(OBJS)
-	$(CC) $(Headers) $(CFLAGS) $^
-	rm -rf a.out
-	
+compile-all : $(SRCS) $(Headers)
+	$(CC) -c $^ -o 
 
 
 	
