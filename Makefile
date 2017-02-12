@@ -1,4 +1,5 @@
 #!/bin/
+include source.mk
 
 #host=Host Linux VM platform
 #bbb=BeagleBone platform
@@ -62,9 +63,11 @@ sample.mk :
 build : $(OBJS)
 	$(CC) -o Project1 -Wl,-Map=main.map $(Headers) $^ $(CFLAGS)
 
-compile-all : $(SRCS) $(Headers)
-	$(CC) -c $^ -o 
-
+compile-all : $(SRCS)
+	$(CC) $(CFLAGS) -c -o main.o main.c 
+	$(CC) $(CFLAGS) -c -o data.o data.c
+	$(CC) $(CFLAGS) -c -o project_1.o project_1.c
+	$(CC) $(CFLAGS) -c -o memory.o memory.c
 
 	
 .PHONY : clean
@@ -74,8 +77,7 @@ clean :
 	 rm -rf *.o \
 	 rm -rf *.i\
 	 rm -rf *.s \
-	 rm -rf *.gch \
-	 rm -rf a.out
+	 rm -rf Project1
 	 
 	 
 	
