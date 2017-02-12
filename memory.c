@@ -5,7 +5,7 @@ int8_t my_memmov(uint8_t * scr, uint8_t * dest,uint32_t length)
 	int8_t i;
 	if((!scr) || (!dest))
 	{
-		return 1;
+		return 0;
 	}
 	if(scr<dest)
 	{
@@ -23,7 +23,7 @@ int8_t my_memmov(uint8_t * scr, uint8_t * dest,uint32_t length)
 			*(scr+i)=0;
 		}		
 	}
-	return 0;
+	return 1;
 }
 
 int8_t my_memset(uint8_t * scr, uint32_t length,uint8_t value)
@@ -31,13 +31,13 @@ int8_t my_memset(uint8_t * scr, uint32_t length,uint8_t value)
 	int8_t i;
 	if(!scr)
 	{
-		return 1;
+		return 0;
 	}
 	for(i=0;i<length;i++)
 	{
 		*(scr+i)=value;
 	}	
-	return 0;	
+	return 1;	
 }
 
 int8_t my_memzero(uint8_t *scr, uint32_t length)
@@ -45,13 +45,13 @@ int8_t my_memzero(uint8_t *scr, uint32_t length)
 	int8_t i;
 	if(!scr)
 	{
-		return 1;
+		return 0;
 	}
 	for(i=0;i<length;i++)
 	{
 		*(scr+i)=0;
 	}
-	return 0;
+	return 1;
 }
 int8_t rev(int8_t * ptr,int32_t length)
 {
@@ -73,4 +73,5 @@ int8_t rev(int8_t * ptr,int32_t length)
 		*(ptr+i)=*(ptr+length-i);
 		*(ptr+length-i)=temp;
 	}
+	return 1;
 }

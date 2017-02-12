@@ -2,14 +2,24 @@
 
 int8_t * my_itoa(int8_t * str, int32_t data, int32_t base)
 {
-	int8_t count=10;
-	int32_t rem;
+	int8_t count=0;
+	int32_t rem,d;
+	d=data;
+	if(str == '\0')
+	{
+		return 0;
+	}
 	if(base<=1 || base>36)
 	{
 		return 0;
 	}
 	else
 	{
+		while(d!=0)
+		{
+			count++;
+			d=d/base;
+		}
 		if(data>=0)
 		{
 			*str='+';
@@ -47,6 +57,10 @@ int32_t my_atoi(int8_t * str)
 	int8_t * ptr;
 	ptr=str;
 	int8_t c=0,k=0;
+	if(str == '\0')
+	{
+		return 0;
+	}
 	while(*ptr!='\0')
 	{
 		if((*ptr>=0x30 && *ptr <=0x39) || (*ptr=='-') || (*ptr=='+'))
@@ -80,14 +94,22 @@ int32_t my_atoi(int8_t * str)
 		{
 			data=data*10+((int)(*str)-48);
 			str++;
+			if(data>214748364 && *str!='\0')
+			{
+				return 0;
+			}
 		}
 		return sign*data;
 	}
 }
 int8_t big_to_little32(uint32_t * data,uint32_t length)
 {
+	if( !data )
+	{
+		return 0;
+	}
 	uint8_t * p;
-	p=data;
+	p=(uint8_t *)data;
 	uint32_t i,temp;
 	for(i=1;i<=length;i++)
 	{
@@ -105,8 +127,12 @@ int8_t big_to_little32(uint32_t * data,uint32_t length)
 int8_t little_to_big32(uint32_t * data,uint32_t length)
 {
 	uint8_t * p;
-	p=data;
+	p=(uint8_t *)data;
 	uint32_t i,temp;
+	if( !data )
+	{
+		return 0;
+	}
 	for(i=1;i<=length;i++)
 	{
 		temp=*p;
