@@ -1,4 +1,5 @@
 # include "memory.h"
+# include <stdint.h>
 
 int8_t my_memmov(uint8_t * scr, uint8_t * dest,uint32_t length)
 {

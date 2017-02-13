@@ -1,6 +1,7 @@
 #include "project_1.h"
 #include "memory.h"
 #include "data.h"
+# include <stdint.h>
 
 void project_1_report()
 {
