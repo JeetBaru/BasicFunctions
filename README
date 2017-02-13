@@ -1,0 +1,81 @@
+MEMORY.C
+-------------------------------------------------------------------------
+This file consists of essential memory management functions written in C.
+We have used std datatypes to make the code architechture independent.
+
+Functions defined in this file are :
+
+1. int8_t my_memmov(uint8_t * scr, uint8_t * dest,uint32_t length);
+This function moves data from memory pointed by * src to memory pointed 
+by * dest. This happens for specified length. The data at source is made
+0 after moving. 
+This function returns 0 if null addresses are passed as parameters and 1 if
+the function worked correctly. Logic for the function caters to any overlap 
+between source and destination addresses.
+
+2. int8_t my_memset(uint8_t * scr, uint32_t length,uint8_t value);
+This function assigns a value(passed as parameter) to all elements in the 
+memory starting from location pointed by  * scr till the specified length is 
+reached. It shall overwrite previous data on the peice of memory.
+my_memset returns 0 on encountering a null pointer as parameter, and 1 for 
+successful operation
+
+3. int8_t my_memzero(uint8_t *scr, uint32_t length);
+This function assigns 0 to all elements in the memory starting from 
+location pointed by  * scr till the specified length is reached. It 
+shall overwrite previous data on that peice of memory.
+my_memset returns 0 on encountering a null pointer as parameter, and 
+1 for successful operation
+
+4. int8_t my_rev(int8_t * ptr,int32_t length);
+This function reverses an array starting with memory locations pointed by
+* ptr uptill length (specified as a parameter). The fuction does not check 
+for intermidiate null characters rather reverses everthing till length is 
+reached. But the function returns 0 if a null pointer is passed as arguement
+and returns 1 on correctly completing the logic.
+
+DATA.C
+-------------------------------------------------------------------------
+This file contains functions whiich help in data management. Written in C 
+these functions use std int data types, hence the code is architechture 
+independent.
+
+Functions defined in these files are:
+
+1. int8_t * my_itoa(int8_t * str, int32_t data, int32_t base);
+This function converts a given "data" into its equivant in the specified
+"base" and store the result as ascii values in * str.
+The itoa is capable of converting data to all bases 2 to 36. If a base 
+argue does not fall in this range the function returns a zero.
+The function also assigns a sign (+/-) in the begining of the ascii string
+hence denoting the sign.
+The length of the final string is dynamic, depending on the base and data 
+values.
+On successfull operation the function returns address to the start of the
+acii string.
+
+2. int32_t my_atoi(int8_t * str);
+This function converts the ascii string stored from memory location *str
+to an integer value of base 10. It checks if all characters till null termination
+are integers, if not it returns 0.
+We have specified for exceptions of '+' and '-' Depending on these the final 
+integer shall get its sign. The function also avoids returning incorrect data
+by avoiding integer overflow. In such cases the function returns 0.
+If everything mentioned above works fine, the function returns the converted data
+
+3. int8_t big_to_little32(uint32_t * data,uint32_t length);
+This function converts the given 32 bit data refernced by the parameter passed
+from its big endian representation to little endian form overwriting its current
+memory locations. The function returns 0 if null pointer is passed as 
+parameter and for proper functioning of the logic the function returns 1
+
+4. int8_t big_to_little32(uint32_t * data,uint32_t length);
+This function converts the given 32 bit data refernced by the parameter passed
+from its little endian representation to big endian form overwriting its current
+memory locations. The function returns 0 if null pointer is passed as 
+parameter and for proper functioning of the logic the function returns 1
+
+5. void print_memory(uint8_t * start, uint32_t length);
+This function prints contents of memory location starting from * start till
+the specified length. It prints hex equivalent of the data.
+
